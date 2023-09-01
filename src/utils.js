@@ -51,19 +51,22 @@ export const generateScripts = ({ colorScheme, user, locale, customAttributes })
     script += createWootPostMessage(themeObject);
   }
 
-    // Add a script to remove blocks containing "Powered by Chatwoot"
-    const removePoweredByChatwootScript = `
-    var elements = document.querySelectorAll('*');
-    for (var i = 0; i < elements.length; i++) {
-      var element = elements[i];
-      if (element.textContent.includes('Powered by Chatwoot')) {
-        element.remove();
+  // Add a script to remove <a> elements containing both "Chatwoot" in a <span> and an <img> with class "branding--image"
+  const removeChatwootElementsScript = `
+    var links = document.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i];
+      var span = link.querySelector('span');
+      var img = link.querySelector('img.branding--image');
+      
+      if (span && span.textContent.includes('Chatwoot') && img) {
+        link.remove();
       }
     }
   `;
 
-  script += removePoweredByChatwootScript;
-  
+  script += removeChatwootElementsScript;
+
   return script;
 };
 export const storeHelper = {

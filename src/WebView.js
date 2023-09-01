@@ -104,11 +104,6 @@ const WebViewComponent = ({
 };
 
 const styles = StyleSheet.create({
-  modal: {
-    flex: 1,
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
   webViewContainer: {
     flex: 1,
   },
