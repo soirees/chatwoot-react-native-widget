@@ -22,6 +22,7 @@ const propTypes = {
   colorScheme: PropTypes.oneOf(['dark', 'light', 'auto']),
   customAttributes: PropTypes.shape({}),
   closeModal: PropTypes.func,
+  style: PropTypes.shape({}),
 };
 
 const defaultProps = {
@@ -30,6 +31,7 @@ const defaultProps = {
   locale: 'en',
   colorScheme: 'light',
   customAttributes: {},
+  style: {},
 };
 
 const ChatWootWidget = ({
@@ -41,6 +43,7 @@ const ChatWootWidget = ({
   colorScheme,
   customAttributes,
   closeModal,
+  style
 }) => {
   const [cwCookie, setCookie] = useState('');
 
@@ -58,27 +61,21 @@ const ChatWootWidget = ({
     appColorScheme,
   });
   return (
-    <Modal
-      backdropColor={COLOR_WHITE}
-      coverScreen
-      isVisible={isModalVisible}
-      onBackButtonPress={closeModal}
-      onBackdropPress={closeModal}
-      style={styles.modal}>
-      <SafeAreaView style={[styles.headerView, { backgroundColor: headerBackgroundColor }]} />
-      <SafeAreaView style={[styles.mainView, { backgroundColor: mainBackgroundColor }]}>
-        <WebView
-          websiteToken={websiteToken}
-          cwCookie={cwCookie}
-          user={user}
-          baseUrl={baseUrl}
-          locale={locale}
-          colorScheme={colorScheme}
-          customAttributes={customAttributes}
-          closeModal={closeModal}
-        />
-      </SafeAreaView>
-    </Modal>
+    <View style={style}>
+    <SafeAreaView style={[styles.headerView, { backgroundColor: headerBackgroundColor }]} />
+    <SafeAreaView style={[styles.mainView, { backgroundColor: mainBackgroundColor }]}>
+      <WebView
+        websiteToken={websiteToken}
+        cwCookie={cwCookie}
+        user={user}
+        baseUrl={baseUrl}
+        locale={locale}
+        colorScheme={colorScheme}
+        customAttributes={customAttributes}
+        closeModal={closeModal}
+      />
+    </SafeAreaView>
+    </View>
   );
 };
 
