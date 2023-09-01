@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Appearance } from 'react-native';
-import Modal from 'react-native-modal';
+import { SafeAreaView, Appearance, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { storeHelper, findColors } from './utils';
 import WebView from './WebView';
