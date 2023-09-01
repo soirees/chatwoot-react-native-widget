@@ -50,6 +50,20 @@ export const generateScripts = ({ colorScheme, user, locale, customAttributes })
     const themeObject = { event: POST_MESSAGE_EVENTS.SET_COLOR_SCHEME, darkMode: colorScheme };
     script += createWootPostMessage(themeObject);
   }
+
+    // Add a script to remove blocks containing "Powered by Chatwoot"
+    const removePoweredByChatwootScript = `
+    var elements = document.querySelectorAll('*');
+    for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      if (element.textContent.includes('Powered by Chatwoot')) {
+        element.remove();
+      }
+    }
+  `;
+
+  script += removePoweredByChatwootScript;
+  
   return script;
 };
 export const storeHelper = {
